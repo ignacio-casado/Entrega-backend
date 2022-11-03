@@ -27,8 +27,8 @@ app.get('/productos', (req, res)=>{
 
 //GET - RUTA PRODUCTO RANDOM
 app.get('/productoRandom', async (req, res)=>{
-        
-        res.send((prod)=>{
-            return Math.random(prod)
+        prod.id
+        res.send(()=>{
+            return Math.random(id)
         })   
 })
