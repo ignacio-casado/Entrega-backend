@@ -6,9 +6,12 @@ const app = express()
 
 //PUERTO
 const PORT = 8080
+
 //
-const manager = require('./index')
-let prod = require('./products.json')
+const Manager = require("./manager");
+const manager = new Manager()
+
+
 //SERVER
 const server = app.listen(PORT, ()=>{
     console.log("server running")
@@ -21,9 +24,11 @@ app.get('/', (req, res)=>{
 })
  
 //GET - RUTA PRODUCTOS
-app.get('/productos', (req, res)=>{
-    res.send(prod)
-})
+app.get("/productos", async (req, res) => {
+    const getProducts = await manager.getAll()
+    const showProductsOnly = getProducts.message
+    return res.send(showProductsOnly);
+});
 
 //GET - RUTA PRODUCTO RANDOM
 app.get('/productoRandom', async (req, res)=>{
