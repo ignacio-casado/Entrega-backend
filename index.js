@@ -8,7 +8,7 @@ let product = {
 
 }
 
-apiNew.save(product).then(result => console.log(result))
+//apiNew.save(product).then(result => console.log(result))
 
 // managerNew.getById(1).then(result => console.log(result)) 
 

@@ -67,6 +67,7 @@ let productos = [
 // GET Todos los productos
 router.get('/productos', (req, res)=>{
     res.send({productos})
+    
 })
 
 
@@ -78,17 +79,25 @@ router.get('/productos/:id', (req, res)=>{
 
 // POST
 router.post('/', (req,res)=>{
-    let prod = req.body
+    let prod = req.body.id
     //validacion
     if(!prod.tittle || !price || !thumbnail ) return{status: "error", message: "Missing files"}
     productos.push(prod)
     res.send({message: "ok", prod})
 })
 
-// PUT
+// PUT (duda)
 router.put('/productos/:id', (req, res)=>{
-    
+    let parametroDos = req.params.id
+    res.send(parametro)
 
+})
 
+// DELETE
+
+router.delete('/productos/:id', ()=>{
+    let parametroTres = req.params.id
+    let borrar = parametroTres.slice(id)
+    res.send({status: "complete product deleted", borrar})
 })
 module.exports = router
