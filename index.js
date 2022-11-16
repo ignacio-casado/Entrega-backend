@@ -1,5 +1,5 @@
-const Manager = require('./manager.js')
-const managerNew = new Manager()
+const api  = require('./routes/api')
+const apiNew = new api()
 
 let product = {
     tittle: "Nike air forcee",
@@ -8,7 +8,7 @@ let product = {
 
 }
 
-managerNew.save(product).then(result => console.log(result))
+apiNew.save(product).then(result => console.log(result))
 
 // managerNew.getById(1).then(result => console.log(result)) 
 
@@ -17,3 +17,4 @@ managerNew.save(product).then(result => console.log(result))
 // managerNew.deleteById(1).then(result => console.log(result)) 
 
 // managerNew.deleteAll().then(result =>console.log(result)) 
+module.exports = index
