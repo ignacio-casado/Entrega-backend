@@ -9,16 +9,16 @@ const productsRouter = require('./routes/api')
 const app = express()
 
 //PUERTO
-const PORT = 8080
+const port  = 3000
 
 //
 /* const api  = require('./routes/api')
 const apiNew = new api()
  */
-
+app.set('port', process.env.PORT || port)
 //SERVER
-const server = app.listen(PORT, ()=>{
-    console.log("server running")
+const server = app.listen(port, ()=>{
+    console.log("server http://localhost:" + app.get("port"))
 })
 // app.use
 app.use(express.json())
