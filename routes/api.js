@@ -109,6 +109,12 @@ router.post('/productos', (req,res)=>{
 // PUT (duda)
 router.put('/productos/:id', (req, res)=>{
     let parametroDos = req.params.id
+  
+    if(productos[parametroDos]){
+        return res.send(productos[parametroDos])
+    }else{
+        res.send('id not found')
+    }
     res.send(parametroDos)
 
 })
