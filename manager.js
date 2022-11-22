@@ -9,7 +9,7 @@ const fs = require('fs')
 
 } */
 
-const pathToFile = './products.json'
+const pathToFile = './products.txt'
 
 class manager {
     

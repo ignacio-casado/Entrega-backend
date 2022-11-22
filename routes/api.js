@@ -61,7 +61,7 @@ let productos = [
         price: 330,
         thumbnail: "https://static.nike.com/a/images/t_prod_ss/w_960,c_limit,f_auto/953f8c77-48ab-4583-b040-c04a3a93ab32/fecha-de-lanzamiento-de-las-ajko-1-chicago.jpg",
         id: 2
-    }
+    } 
 ]
 //Agrego archivo
 
@@ -81,54 +81,54 @@ router.get('/productos', (req, res)=>{
 // GET Producto por ID
 router.get('/productos/:id', (req, res)=>{
     let params = req.params.id
-    try{
-            if(params === Number){
-                let buscar = productos.find(element => element.id === id)
-                return res.send({buscar})  
-               
-            }
-          
-        
-    }catch(err){
-        return {status: "error", message: "ID not founded"}
+    if(productos[params]){
+        return res.send(productos[params])
+    }else{
+        res.send('id not found')
     }
-   
-})
 
+})
 // POST
 router.post('/productos', (req,res)=>{
-    let prod = req.body.id
+    let prod = req.body
     //validacion
     try{
-        if(!prod.tittle || !price || !thumbnail ) return{status: "error", message: "Missing files"}
-        else{
-            let id = productos[productos.length-1].id+1
-            productos.id = id
-            productos.push(prod)
-            res.send({message: "ok", prod})
+        if(!prod.tittle || !prod.price || !prod.thumbnail ) return res.status(400).send({err: "missing data"}) 
+        if(prod){
+                let id = productos[productos.length-1].id+1
+                prod.id = id
+                productos.push(prod) 
         }
+
+        res.send({message: "ok", prod, productos})
     }catch(err){
-        return{status: "error", message: err.message}
+        return({status: "error", message: err.message}) 
     }
-  
-   
-    
 })
 
 // PUT (duda)
 router.put('/productos/:id', (req, res)=>{
     let parametroDos = req.params.id
-    res.send(parametro)
+    res.send(parametroDos)
 
 })
 
 // DELETE
 
-router.delete('/productos/:id', ()=>{
+router.delete('/productos/:id', (req, res)=>{
+    let idD = req.params.id
     try{
-        let parametroTres = req.params.id
-        let borrar = parametroTres.slice(id)
-        return res.send({status: "complete product deleted", borrar})
+        let find = productos.find((e) =>e.idD == idD )
+        if(find){
+           const borrar = function (idD, index){
+            let newProductos = [...idD]
+            productos.slice(index, idD)
+            return newProductos
+           }
+           let newProductos = (idD, productos)
+           res.send(newProductos, productos)
+        }
+       
     }catch(err){
         return ({status: "error", message: err.message})
     }
