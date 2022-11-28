@@ -3,10 +3,9 @@
 
 //IMPORT EXPRESS
 const express = require('express')
-const { Profiler } = require('react')
+/* const { Profiler } = require('react') */
 const productsRouter = require('./routes/api')
-/* const productsRouterDos = require('./routes/productos') */
-
+const productsRouterDos = require('./routes/api/productos')
 
 const app = express()
 
@@ -22,5 +21,5 @@ const server = app.listen(port, ()=>{
 // app.use
 app.use(express.json())
 app.use('/api', productsRouter)
-/* app.use('/productos', productsRouterDos) 
- */
+app.use('/productos', productsRouterDos) 
+
